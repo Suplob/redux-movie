@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import { Route } from "react-router";
 import Login from "../pages/Login";
 import firebase from "./firebase";
-import Preloader from '../components/Preloader'
+import Preloader from "../components/Preloader";
 const authContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -36,7 +36,7 @@ export const PrivateRoute = ({
   );
 };
 
-function useProvideAuth() {
+export default function useProvideAuth() {
   const [user, setUser] = useState();
   const [loginStatus, setLoginStatus] = useState({
     status: "idle",

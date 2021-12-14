@@ -1,0 +1,20 @@
+@import "../../common/color.scss";
+
+.search-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.search-input {
+  background-color: $secondary-color;
+  width: 50vw;
+  border: 2px solid transparent;
+  padding: 5px 10px;
+  margin-right: 10px;
+
+  &:focus {
+    outline: none;
+    border: 2px solid transparent;
+  }
+}

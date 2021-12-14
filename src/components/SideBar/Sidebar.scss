@@ -1,0 +1,18 @@
+@import "../../common/color.scss";
+
+.list-group {
+  border: 2px solid $third-color;
+}
+
+.list-group-item {
+  color: $font-primary;
+  z-index: 2;
+  background-color: transparent;
+  border-color: rgba(0, 0, 0, 0.125);
+  margin: 0;
+
+  &:hover {
+    border-left: 5px solid $third-color;
+    color: $font-primary;
+  }
+}
