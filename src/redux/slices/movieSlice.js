@@ -1,28 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// First, create the thunk
-// export const fetchMovie = createAsyncThunk(
-//   "movies/fetchMovie",
-//   async (movieName, control) => {
-//     // `http://www.omdbapi.com/?apikey=${
-//     //   process.env.REACT_APP_MOVIE_API
-//     // }&type=movie&s=${searchText.length === 0 ? "avengers" : searchText}" `;
-//     axios
-//       .get(
-//         `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&type=movie&s=avengers`
-//       )
-//       .then((res) => {
-//         return res.data;
-//       });
-//   }
-// );
-
 export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
-  async () => {
+  async (movieName) => {
     const response = await axios.get(
-      `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&type=movie&s=avengers`
+      `http://www.omdbapi.com/?apikey=${
+        process.env.REACT_APP_MOVIE_API
+      }&type=movie&s=${movieName.length === 0 ? "avengers" : movieName}"`
+    );
+    return response.data;
+  }
+);
+
+export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
+  "movies/fetchAsyncMovieOrShowDetail",
+  async (id) => {
+    const response = await axios.get(
+      `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&i=${id}&Plot=full`
     );
     return response.data;
   }
@@ -30,19 +25,11 @@ export const fetchAsyncMovies = createAsyncThunk(
 
 export const fetchAsyncShows = createAsyncThunk(
   "movies/fetchAsyncShows",
-  async () => {
+  async (seriesName) => {
     const response = await axios.get(
-      `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&type=series&s=naruto`
-    );
-    return response.data;
-  }
-);
-
-export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
-  "movies/fetchAsyncShows",
-  async (id) => {
-    const response = await axios.get(
-      `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&i=${id}&Plot=full`
+      `http://www.omdbapi.com/?apikey=${
+        process.env.REACT_APP_MOVIE_API
+      }&type=movie&s=${seriesName.length === 0 ? "friends" : seriesName}" `
     );
     return response.data;
   }
@@ -52,19 +39,18 @@ const movieSlice = createSlice({
   name: "movie",
   initialState: {
     allMovies: [],
-    moviesToWatch: [],
+    moviesAndSeriesToWatch: [],
     finishedMovies: [],
     allShows: [],
-    detail: [],
+    detailOfMovieOrShow: [],
   },
   reducers: {
     addToMovieList: (state, { payload }) => {
-      state.toWatch.push(payload);
+      console.log(payload);
+      state.moviesAndSeriesToWatch.push(payload);
     },
-    addToWatch: (state, { payload }) => {
-      state.readingList = state.readingList.filter(
-        (book) => book.id !== payload.id
-      );
+    removeDetailOfMovieOrShow: (state) => {
+      state.detailOfMovieOrShow = [];
     },
   },
   extraReducers: {
@@ -79,17 +65,21 @@ const movieSlice = createSlice({
       console.log("rejected");
     },
     [fetchAsyncShows.fulfilled]: (state, { payload }) => {
-      console.log("fetched successfully", payload);
+      console.log("fetched successfully of shows");
       return { ...state, allShows: payload };
     },
     [fetchAsyncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
-      console.log("fetched successfully", payload);
-      return { ...state, detail: payload };
+      console.log("fetched successfully");
+      return { ...state, detailOfMovieOrShow: payload };
     },
   },
 });
 
-export const { addMovie, addToReadingList, removeFormReadingList } =
-  movieSlice.actions;
+export const {
+  addToMovieList,
+  addToReadingList,
+  removeFormReadingList,
+  removeDetailOfMovieOrShow,
+} = movieSlice.actions;
 
 export default movieSlice.reducer;

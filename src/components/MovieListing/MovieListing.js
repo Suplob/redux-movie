@@ -10,22 +10,26 @@ const MovieListing = () => {
 
   return movies.Response === "True" ? (
     <>
-      <div className="movies">
-        <h2>Movies</h2>
-        <div className="movie-wrapper">
-          {movies.Search?.map((movie, i) => (
-            <MovieCard data={movie} key={i}></MovieCard>
-          ))}
+      {movies.length !== 0 && (
+        <div className="movies">
+          <h2>Movies</h2>
+          <div className="movie-wrapper">
+            {movies.Search?.map((movie, i) => (
+              <MovieCard data={movie} key={i}></MovieCard>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="movies">
-        <h2>Shows</h2>
-        <div className="movie-wrapper">
-          {shows.Search?.map((show, i) => (
-            <MovieCard data={show} key={i}></MovieCard>
-          ))}
+      )}
+      {shows.length !== 0 && (
+        <div className="movies">
+          <h2>Shows</h2>
+          <div className="movie-wrapper">
+            {shows.Search?.map((show, i) => (
+              <MovieCard data={show} key={i}></MovieCard>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   ) : (
     <h2>{movies.Error}</h2>

@@ -1,0 +1,179 @@
+.circleContainer {
+  position: relative;
+  display: block;
+  width: 70vh;
+  height: 70vh;
+  transform-style: preserve-3d;
+  transform: perspective(500px) rotateX(90deg);
+  margin: 0 auto;
+}
+.circle:nth-child(0) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 0vh;
+  top: 0vh;
+  width: 70vh;
+  height: 70vh;
+  animation: spin Infinitys infinite linear;
+}
+.circle:nth-child(1) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 3.181818181818182vh;
+  top: 3.181818181818182vh;
+  width: 63.63636363636364vh;
+  height: 63.63636363636364vh;
+  animation: spin 32s infinite linear;
+}
+.circle:nth-child(2) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 6.363636363636363vh;
+  top: 6.363636363636363vh;
+  width: 57.27272727272727vh;
+  height: 57.27272727272727vh;
+  animation: spin 16s infinite linear;
+}
+.circle:nth-child(3) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 9.545454545454545vh;
+  top: 9.545454545454545vh;
+  width: 50.90909090909091vh;
+  height: 50.90909090909091vh;
+  animation: spin 10.666666666666666s infinite linear;
+}
+.circle:nth-child(4) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 12.727272727272727vh;
+  top: 12.727272727272727vh;
+  width: 44.54545454545455vh;
+  height: 44.54545454545455vh;
+  animation: spin 8s infinite linear;
+}
+.circle:nth-child(5) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 15.909090909090908vh;
+  top: 15.909090909090908vh;
+  width: 38.18181818181819vh;
+  height: 38.18181818181819vh;
+  animation: spin 6.4s infinite linear;
+}
+.circle:nth-child(6) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 19.09090909090909vh;
+  top: 19.09090909090909vh;
+  width: 31.81818181818182vh;
+  height: 31.81818181818182vh;
+  animation: spin 5.333333333333333s infinite linear;
+}
+.circle:nth-child(7) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 22.272727272727273vh;
+  top: 22.272727272727273vh;
+  width: 25.454545454545453vh;
+  height: 25.454545454545453vh;
+  animation: spin 4.571428571428571s infinite linear;
+}
+.circle:nth-child(8) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 25.454545454545453vh;
+  top: 25.454545454545453vh;
+  width: 19.090909090909093vh;
+  height: 19.090909090909093vh;
+  animation: spin 4s infinite linear;
+}
+.circle:nth-child(9) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 28.636363636363633vh;
+  top: 28.636363636363633vh;
+  width: 12.727272727272734vh;
+  height: 12.727272727272734vh;
+  animation: spin 3.555555555555555s infinite linear;
+}
+.circle:nth-child(10) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 31.818181818181817vh;
+  top: 31.818181818181817vh;
+  width: 6.363636363636367vh;
+  height: 6.363636363636367vh;
+  animation: spin 3.2s infinite linear;
+}
+.circle:nth-child(11) {
+  position: absolute;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  left: 35vh;
+  top: 35vh;
+  width: 0vh;
+  height: 0vh;
+  animation: spin 2.909090909090909s infinite linear;
+}
+.circle:nth-child(2n) {
+  border: 2px dashed #fff;
+}
+.circle:last-child {
+  display: none;
+}
+@-moz-keyframes spin {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+@-o-keyframes spin {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}

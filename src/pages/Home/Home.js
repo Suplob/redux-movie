@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import MovieListing from "../../components/MovieListing/MovieListing";
 import PageLayout from "../../components/PageLayout/PageLayout";
 import {
@@ -13,19 +12,14 @@ const Home = () => {
   const [searchText, setSearchText] = useState([]);
   const [control, setControl] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
-    dispatch(fetchAsyncMovies());
-    dispatch(fetchAsyncShows());
-  }, [dispatch]);
+    dispatch(fetchAsyncShows(searchText));
+    dispatch(fetchAsyncMovies(searchText));
+  }, [control, dispatch]);
 
   function handleSearch(e) {
     setSearchText(e.target.value);
-    history.push({
-      pathname: "/",
-      search: `?q=${searchText}`,
-    });
   }
 
   return (

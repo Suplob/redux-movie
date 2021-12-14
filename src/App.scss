@@ -5,7 +5,6 @@
   padding: 0;
   box-sizing: 0;
   font-family: "Poppins", sans-serif;
-  color: $font-primary;
 }
 
 a {
@@ -22,7 +21,12 @@ body {
   padding: 5px 12px;
   border-radius: 3px;
   transition: 150ms ease-in-out;
+  color: $font-primary;
+  font-weight: 500;
   &:hover {
+    background-color: $third-color;
+  }
+  &[disabled] {
     background-color: $third-color;
   }
 }
