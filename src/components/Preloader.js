@@ -1,5 +1,4 @@
 import React from "react";
-import spinner from "../images/spinner.gif";
 import "./Preload.scss";
 
 const Preloader = () => {
@@ -8,19 +7,21 @@ const Preloader = () => {
     //     <img src={spinner} alt="" />
     // </div>
 
-    <div class="circleContainer">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
+    <div className="containerOfCircle">
+      <div class="circleContainer">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
     </div>
   );
 };

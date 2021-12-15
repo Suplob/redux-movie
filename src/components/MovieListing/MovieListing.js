@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import MovieCard from "../MovieCard/MovieCard";
 import "./MovieListing.scss";
 
@@ -15,7 +14,7 @@ const MovieListing = () => {
           <h2>Movies</h2>
           <div className="movie-wrapper">
             {movies.Search?.map((movie, i) => (
-              <MovieCard data={movie} key={i}></MovieCard>
+              <MovieCard data={movie} key={i} comingFrom="home"></MovieCard>
             ))}
           </div>
         </div>
@@ -25,7 +24,7 @@ const MovieListing = () => {
           <h2>Shows</h2>
           <div className="movie-wrapper">
             {shows.Search?.map((show, i) => (
-              <MovieCard data={show} key={i}></MovieCard>
+              <MovieCard data={show} key={i} comingFrom="home"></MovieCard>
             ))}
           </div>
         </div>

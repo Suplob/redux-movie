@@ -1,0 +1,13 @@
+@import "../../common/color.scss";
+
+.movie-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-gap: 15px;
+}
+
+h3 {
+  color: $font-secondary;
+  margin: 20px 0px;
+  font-weight: 400;
+}

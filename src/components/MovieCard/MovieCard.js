@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { removeDetailOfMovieOrShow } from "../../redux/slices/movieSlice";
 import "./MovieCard.scss";
 
-const MovieCard = ({ data }) => {
+const MovieCard = ({ data, comingFrom }) => {
+  const [route, setRoute] = useState("");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (comingFrom === "home") {
+      setRoute(`/detail/allMovie/${data.imdbID}`);
+    } else if (comingFrom === "watchList") {
+      setRoute(`/detail/watchList/${data.imdbID}`);
+    } else if (comingFrom === "finishedMovie") {
+      setRoute(`/detail/finishedMovieSeries/${data.imdbID}`);
+    }
+  }, [comingFrom]);
+
+  useEffect(() => {
+    dispatch(removeDetailOfMovieOrShow);
+  }, []);
+
   return (
-    <Link to={`/detail/${data.imdbID}`}>
+    <Link to={route}>
       <div className="card-item">
         <div className="card-inner">
           <div className="card-top">

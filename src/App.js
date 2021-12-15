@@ -15,8 +15,14 @@ function App() {
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/watchList" component={WatchMovie} />
           <PrivateRoute exact path="/finishedMovie" component={FinishedMovie} />
-          <PrivateRoute exact path="/detail/:id" component={Detail} />
-          <Route component={NotFound} />
+          <PrivateRoute exact path="/detail/allMovie/:id" component={Detail} />
+          <PrivateRoute exact path="/detail/watchList/:id" component={Detail} />
+          <PrivateRoute
+            exact
+            path="/detail/finishedMovieSeries/:id"
+            component={Detail}
+          />
+          <Route path="*" component={NotFound} />
         </Switch>
       </Router>
     </AuthProvider>

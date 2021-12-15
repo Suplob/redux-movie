@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import NotyAlert from "../../common/Noty";
 import Footer from "../../components/Footer.js/Footer";
 import Header from "../../components/Header/Header";
 import Preloader from "../../components/Preloader";
 import {
+  addMoveToFinishList,
   addToMovieList,
   fetchAsyncMovieOrShowDetail,
   removeDetailOfMovieOrShow,
+  removeMovieFromFinishedList,
 } from "../../redux/slices/movieSlice";
 import "./Detail.scss";
 
@@ -17,14 +19,19 @@ const Detail = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.detailOfMovieOrShow);
 
+  const location = useLocation();
+  const goTo = location.pathname.split("/")[2];
+  console.log(goTo);
+
   useEffect(() => {
     dispatch(fetchAsyncMovieOrShowDetail(id));
+  }, []);
+
+  useEffect(() => {
     return () => {
       dispatch(removeDetailOfMovieOrShow());
     };
   }, [dispatch]);
-
-  console.log(data);
 
   return (
     <div>
@@ -73,18 +80,51 @@ const Detail = () => {
               </div>
             </div>
 
-            <button
-              className="regular-btn"
-              style={{ marginTop: "30px" }}
-              onClick={(e) => {
-                NotyAlert("Movie Added To Watchlist!");
-                dispatch(addToMovieList(data));
-                e.target.innerText = "Already Added";
-                e.target.setAttribute("disabled", true);
-              }}
-            >
-              Add To Watch List
-            </button>
+            <>
+              {goTo === "allMovie" && (
+                <button
+                  className="regular-btn"
+                  style={{ marginTop: "30px" }}
+                  onClick={(e) => {
+                    NotyAlert("Movie Added To Watchlist!");
+                    dispatch(addToMovieList(data));
+                    e.target.innerText = "Added To Watchlist";
+                    e.target.setAttribute("disabled", true);
+                    console.log("onclick data", data);
+                  }}
+                >
+                  Add To Watch List
+                </button>
+              )}
+              {goTo === "watchList" && (
+                <button
+                  className="regular-btn"
+                  style={{ marginTop: "30px" }}
+                  onClick={(e) => {
+                    NotyAlert("Movie Added To Finished List!");
+                    dispatch(addMoveToFinishList(data));
+                    e.target.innerText = "Added To Finished List";
+                    e.target.setAttribute("disabled", true);
+                  }}
+                >
+                  Add To Finished List
+                </button>
+              )}
+              {goTo === "finishedMovieSeries" && (
+                <button
+                  className="regular-btn"
+                  style={{ marginTop: "30px" }}
+                  onClick={(e) => {
+                    NotyAlert("Movie Removed From Finished List!");
+                    dispatch(removeMovieFromFinishedList(data));
+                    e.target.innerText = "Removed from finished list";
+                    e.target.setAttribute("disabled", true);
+                  }}
+                >
+                  Remove from finished list
+                </button>
+              )}
+            </>
           </div>
           <div className="section-right">
             <img src={data.Poster} alt={data.Title} />

@@ -10,12 +10,20 @@ const WatchMovie = () => {
 
   return (
     <PageLayout>
-      <h4>Movies and series in your watchlist</h4>
-      <div className="watch-list-wrapper">
-        {watchList.map((data) => (
-          <MovieCard key={data.imdbID} data={data}></MovieCard>
-        ))}
-      </div>
+      {!watchList.length ? (
+        <h3 style={{ marginBottom: "66vh" }}>
+          You don't have any move or show on your watchlist!
+        </h3>
+      ) : (
+        <>
+          <h2>Movies and series in your watchlist</h2>
+          <div className="watch-list-wrapper">
+            {watchList.map((data, i) => (
+              <MovieCard key={i} data={data} comingFrom="watchList"></MovieCard>
+            ))}
+          </div>
+        </>
+      )}
     </PageLayout>
   );
 };

@@ -46,11 +46,34 @@ const movieSlice = createSlice({
   },
   reducers: {
     addToMovieList: (state, { payload }) => {
-      console.log(payload);
       state.moviesAndSeriesToWatch.push(payload);
+    },
+    addMoveToFinishList: (state, { payload }) => {
+      console.log(payload.imdbID);
+      let newState = {
+        ...state,
+        finishedMovies: [...state.finishedMovies, payload],
+        moviesAndSeriesToWatch: state.moviesAndSeriesToWatch.filter(
+          (movie) => movie.imdbID !== payload.imdbID
+        ),
+      };
+      return newState;
     },
     removeDetailOfMovieOrShow: (state) => {
       state.detailOfMovieOrShow = [];
+    },
+    removeMovieFromFinishedList: (state, { payload }) => {
+      let newState = {
+        ...state,
+        finishedMovies: state.finishedMovies.filter(
+          (movie) => movie.imdbID !== payload.imdbID
+        ),
+      };
+      return newState;
+
+      // state.finishedMovies = state.finishedMovies.filter(
+      //   (movie) => movie !== payload
+      // );
     },
   },
   extraReducers: {
@@ -77,9 +100,9 @@ const movieSlice = createSlice({
 
 export const {
   addToMovieList,
-  addToReadingList,
-  removeFormReadingList,
   removeDetailOfMovieOrShow,
+  addMoveToFinishList,
+  removeMovieFromFinishedList,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;
