@@ -2,9 +2,11 @@ import React from "react";
 import Footer from "../Footer.js/Footer";
 import Header from "../Header/Header";
 import Sidebar from "../SideBar/Sidebar";
+import "./PageLayout.scss";
+
 const PageLayout = ({ children }) => {
   return (
-    <div>
+    <div className="pageLayout">
       <Header />
       <div className="container my-4">
         <div className="row">

@@ -9,7 +9,7 @@ import {
 import "./Home.scss";
 
 const Home = () => {
-  const [searchText, setSearchText] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [control, setControl] = useState(false);
   const dispatch = useDispatch();
 
@@ -18,10 +18,6 @@ const Home = () => {
     dispatch(fetchAsyncMovies(searchText));
   }, [control, dispatch]);
 
-  function handleSearch(e) {
-    setSearchText(e.target.value);
-  }
-
   return (
     <PageLayout>
       <div className="search-wrapper">
@@ -29,7 +25,7 @@ const Home = () => {
           <input
             placeholder="Search Your Movie"
             className="search-input"
-            onChange={handleSearch}
+            onChange={(e) => setSearchText(e.target.value)}
           />
           <button
             className="regular-btn"

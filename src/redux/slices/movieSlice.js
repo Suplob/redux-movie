@@ -13,19 +13,20 @@ export const fetchAsyncMovies = createAsyncThunk(
   }
 );
 
-export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
-  "movies/fetchAsyncMovieOrShowDetail",
-  async (id) => {
-    const response = await axios.get(
-      `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&i=${id}&Plot=full`
-    );
-    return response.data;
-  }
-);
+// export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
+//   "movies/fetchAsyncMovieOrShowDetail",
+//   async (id) => {
+//     const response = await axios.get(
+//       `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&i=${id}&Plot=full`
+//     );
+//     return response.data;
+//   }
+// );
 
 export const fetchAsyncShows = createAsyncThunk(
   "movies/fetchAsyncShows",
   async (seriesName) => {
+    console.log("seriesname", seriesName);
     const response = await axios.get(
       `http://www.omdbapi.com/?apikey=${
         process.env.REACT_APP_MOVIE_API
@@ -70,10 +71,6 @@ const movieSlice = createSlice({
         ),
       };
       return newState;
-
-      // state.finishedMovies = state.finishedMovies.filter(
-      //   (movie) => movie !== payload
-      // );
     },
   },
   extraReducers: {
@@ -91,10 +88,10 @@ const movieSlice = createSlice({
       console.log("fetched successfully of shows");
       return { ...state, allShows: payload };
     },
-    [fetchAsyncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
-      console.log("fetched successfully");
-      return { ...state, detailOfMovieOrShow: payload };
-    },
+    // [fetchAsyncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
+    //   console.log("fetched successfully");
+    //   return { ...state, detailOfMovieOrShow: payload };
+    // },
   },
 });
 

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { removeDetailOfMovieOrShow } from "../../redux/slices/movieSlice";
 import "./MovieCard.scss";
+import notFound from "../../images/notFound.png";
 
 const MovieCard = ({ data, comingFrom }) => {
   const [route, setRoute] = useState("");
@@ -16,7 +17,7 @@ const MovieCard = ({ data, comingFrom }) => {
     } else if (comingFrom === "finishedMovie") {
       setRoute(`/detail/finishedMovieSeries/${data.imdbID}`);
     }
-  }, [comingFrom]);
+  }, [comingFrom, data]);
 
   useEffect(() => {
     dispatch(removeDetailOfMovieOrShow);
@@ -27,7 +28,10 @@ const MovieCard = ({ data, comingFrom }) => {
       <div className="card-item">
         <div className="card-inner">
           <div className="card-top">
-            <img src={data.Poster} alt={data.Title} />
+            <img
+              src={data.Poster === "N/A" ? notFound : data.Poster}
+              alt={data.Title}
+            />
           </div>
           <div className="card-bottom">
             <div className="card-info">

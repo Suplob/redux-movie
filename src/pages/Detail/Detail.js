@@ -8,23 +8,29 @@ import Preloader from "../../components/Preloader";
 import {
   addMoveToFinishList,
   addToMovieList,
-  fetchAsyncMovieOrShowDetail,
   removeDetailOfMovieOrShow,
   removeMovieFromFinishedList,
 } from "../../redux/slices/movieSlice";
 import "./Detail.scss";
+import notFoundImg from "../../images/notFound.png";
 
 const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.detailOfMovieOrShow);
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const location = useLocation();
   const goTo = location.pathname.split("/")[2];
-  console.log(goTo);
 
   useEffect(() => {
-    dispatch(fetchAsyncMovieOrShowDetail(id));
+    setLoading(true);
+    fetch(
+      `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&i=${id}&Plot=full`
+    )
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -33,10 +39,12 @@ const Detail = () => {
     };
   }, [dispatch]);
 
+  console.log(data);
+
   return (
-    <div>
+    <div className="detail-container">
       <Header></Header>
-      {data.length === 0 ? (
+      {loading ? (
         <Preloader />
       ) : (
         <div className="movie-section container">
@@ -127,7 +135,11 @@ const Detail = () => {
             </>
           </div>
           <div className="section-right">
-            <img src={data.Poster} alt={data.Title} />
+            <img
+              src={data.Poster === "N/A" ? notFoundImg : data.Poster}
+              alt={data.Title}
+              className={data.Poster === "N/A" && "notFoundImg"}
+            />
           </div>
         </div>
       )}

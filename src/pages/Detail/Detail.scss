@@ -1,5 +1,11 @@
 @import "../../common/color.scss";
 
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .movie-section {
   display: flex;
   justify-content: space-evenly;
@@ -55,4 +61,8 @@
 
 .section-right {
   margin-left: 30px;
+}
+
+.notFoundImg {
+  width: 300px;
 }
