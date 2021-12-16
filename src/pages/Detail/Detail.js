@@ -138,7 +138,7 @@ const Detail = () => {
             <img
               src={data.Poster === "N/A" ? notFoundImg : data.Poster}
               alt={data.Title}
-              className={data.Poster === "N/A" && "notFoundImg"}
+              className={data.Poster === "N/A" ? "notFoundImg" : "foundImg"}
             />
           </div>
         </div>

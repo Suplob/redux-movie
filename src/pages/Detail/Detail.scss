@@ -7,8 +7,8 @@
 }
 
 .movie-section {
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   padding: 40px 0px;
   color: $font-primary;
   font-weight: 400;
@@ -65,4 +65,26 @@
 
 .notFoundImg {
   width: 300px;
+}
+
+.foundImg {
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .movie-section {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .section-left {
+    margin-bottom: 40px;
+  }
+
+  .foundImg {
+    width: 90%;
+  }
+
+  .notFoundImg {
+    width: 340px;
+  }
 }
