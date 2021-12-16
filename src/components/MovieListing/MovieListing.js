@@ -7,9 +7,6 @@ const MovieListing = () => {
   const movies = useSelector((state) => state.allMovies);
   const shows = useSelector((state) => state.allShows);
 
-  console.log("movies", movies);
-  console.log("shows", shows);
-
   return movies.Response === "True" ? (
     <>
       {movies.length !== 0 && (

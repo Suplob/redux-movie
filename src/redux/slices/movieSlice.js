@@ -44,6 +44,7 @@ const movieSlice = createSlice({
     finishedMovies: [],
     allShows: [],
     detailOfMovieOrShow: [],
+    searchText: "",
   },
   reducers: {
     addToMovieList: (state, { payload }) => {
@@ -71,6 +72,9 @@ const movieSlice = createSlice({
         ),
       };
       return newState;
+    },
+    searchText: (state, { payload }) => {
+      state.searchText = payload;
     },
   },
   extraReducers: {
@@ -100,6 +104,7 @@ export const {
   removeDetailOfMovieOrShow,
   addMoveToFinishList,
   removeMovieFromFinishedList,
+  searchText,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;
