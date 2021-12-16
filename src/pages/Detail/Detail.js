@@ -26,7 +26,7 @@ const Detail = () => {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&i=${id}&Plot=full`
+      `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&i=${id}&Plot=full`
     )
       .then((res) => res.json())
       .then((data) => setData(data))
@@ -38,8 +38,6 @@ const Detail = () => {
       dispatch(removeDetailOfMovieOrShow());
     };
   }, [dispatch]);
-
-  console.log(data);
 
   return (
     <div className="detail-container">
@@ -98,7 +96,6 @@ const Detail = () => {
                     dispatch(addToMovieList(data));
                     e.target.innerText = "Added To Watchlist";
                     e.target.setAttribute("disabled", true);
-                    console.log("onclick data", data);
                   }}
                 >
                   Add To Watch List

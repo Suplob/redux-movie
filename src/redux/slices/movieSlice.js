@@ -5,7 +5,7 @@ export const fetchAsyncMovies = createAsyncThunk(
   "movies/fetchAsyncMovies",
   async (movieName) => {
     const response = await axios.get(
-      `http://www.omdbapi.com/?apikey=${
+      `https://www.omdbapi.com/?apikey=${
         process.env.REACT_APP_MOVIE_API
       }&type=movie&s=${movieName.length === 0 ? "avengers" : movieName}"`
     );
@@ -13,22 +13,11 @@ export const fetchAsyncMovies = createAsyncThunk(
   }
 );
 
-// export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
-//   "movies/fetchAsyncMovieOrShowDetail",
-//   async (id) => {
-//     const response = await axios.get(
-//       `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&i=${id}&Plot=full`
-//     );
-//     return response.data;
-//   }
-// );
-
 export const fetchAsyncShows = createAsyncThunk(
   "movies/fetchAsyncShows",
   async (seriesName) => {
-    console.log("seriesname", seriesName);
     const response = await axios.get(
-      `http://www.omdbapi.com/?apikey=${
+      `https://www.omdbapi.com/?apikey=${
         process.env.REACT_APP_MOVIE_API
       }&type=movie&s=${seriesName.length === 0 ? "friends" : seriesName}" `
     );
@@ -51,7 +40,6 @@ const movieSlice = createSlice({
       state.moviesAndSeriesToWatch.push(payload);
     },
     addMoveToFinishList: (state, { payload }) => {
-      console.log(payload.imdbID);
       let newState = {
         ...state,
         finishedMovies: [...state.finishedMovies, payload],
@@ -78,24 +66,16 @@ const movieSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchAsyncMovies.pending]: () => {
-      console.log("pending");
-    },
+    [fetchAsyncMovies.pending]: () => {},
     [fetchAsyncMovies.fulfilled]: (state, { payload }) => {
-      console.log("fetched successfully");
       return { ...state, allMovies: payload };
     },
     [fetchAsyncMovies.rejected]: () => {
       console.log("rejected");
     },
     [fetchAsyncShows.fulfilled]: (state, { payload }) => {
-      console.log("fetched successfully of shows");
       return { ...state, allShows: payload };
     },
-    // [fetchAsyncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
-    //   console.log("fetched successfully");
-    //   return { ...state, detailOfMovieOrShow: payload };
-    // },
   },
 });
 

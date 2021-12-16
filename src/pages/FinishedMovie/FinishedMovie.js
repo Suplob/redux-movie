@@ -2,20 +2,15 @@ import React from "react";
 import { useSelector } from "react-redux";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import PageLayout from "../../components/PageLayout/PageLayout";
-import Preloader from "../../components/Preloader";
 import "./FinishedMovie.scss";
 
 const FinishedMovie = () => {
   const finishedMovie = useSelector((state) => state.finishedMovies);
 
-  console.log("finishedmovie", finishedMovie);
-
   return (
     <PageLayout>
       {finishedMovie.length === 0 ? (
-        <h3 style={{ marginBottom: "67vh" }}>
-          You don't have any movie or series in your finished list!
-        </h3>
+        <h3>You don't have any movie or series in your finished list!</h3>
       ) : (
         <>
           <h2>Your finished movie and show</h2>

@@ -7,6 +7,29 @@
   font-family: "Poppins", sans-serif;
 }
 
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #304c69 $secondary-color;
+}
+
+html::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #304c69;
+  border-radius: 30px;
+  padding: 0.5;
+}
+
+html::-webkit-scrollbar-thumb:active {
+  background-color: #28435e;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: $secondary-color;
+}
+
 a {
   text-decoration: none;
 }

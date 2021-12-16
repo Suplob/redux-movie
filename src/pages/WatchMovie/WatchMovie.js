@@ -6,14 +6,10 @@ import "./WatchMovie.scss";
 
 const WatchMovie = () => {
   const watchList = useSelector((state) => state.moviesAndSeriesToWatch);
-  console.log(watchList);
-
   return (
     <PageLayout>
       {!watchList.length ? (
-        <h3 style={{ marginBottom: "66vh" }}>
-          You don't have any move or show on your watchlist!
-        </h3>
+        <h3>You don't have any move or show on your watchlist!</h3>
       ) : (
         <>
           <h2>Movies and series in your watchlist</h2>
