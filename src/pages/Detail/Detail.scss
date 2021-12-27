@@ -73,8 +73,8 @@
 
 @media (max-width: 480px) {
   .movie-section {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column-reverse;
   }
   .section-left {
     margin-bottom: 40px;
